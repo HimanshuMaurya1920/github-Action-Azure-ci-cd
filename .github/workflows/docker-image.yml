@@ -20,3 +20,16 @@ jobs:
        # Step 2: Build Docker image
       - name: Build Docker image
         run: docker build -t simple-ci-app-azure .
+
+              # Step 4: Test SSH connection to Azure VM
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AZURE_HOST }}
+          username: ${{ secrets.AZURE_USER }}
+          key: ${{ secrets.AZURE_SSH_KEY }}
+          script: |
+            echo "Connected to Azure VM"
+            hostname
+            docker --version
+
