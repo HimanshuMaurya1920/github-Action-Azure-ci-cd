@@ -26,7 +26,7 @@ jobs:
         
        # Step 3: Build Docker image
       - name: Build Docker image
-        run: docker build -t simple-ci-app-azure .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/simple-ci-app:latest .
 
       # 4️⃣ Push image to Docker Hub
       - name: Push Docker image
